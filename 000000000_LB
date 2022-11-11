@@ -273,13 +273,28 @@ function DiscordLib:Window(text)
 
 	ServersHoldPadding.Name = "ServersHoldPadding"
 	ServersHoldPadding.Parent = ServersHold
-
+	
+	local GUIOpen = true
+	
 	CloseBtn.MouseButton1Click:Connect(
 		function()
+		    if GUIOpen then
 			MainFrame:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
+			game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage",{Text="!Press L to re-open the UI!",Color=Color3.fromRGB(255, 170, 0)})
+			GUIOpen = false
+			end
 		end
 	)
-
+	
+	game:GetService("UserInputService").InputBegan:Connect(function(input, gameProccesedEvent)
+	    if input.KeyCode == Enum.KeyCode.L then
+	        if not GUIOpen then
+	            	GUIOpen = true
+	            	MainFrame:TweenSize(UDim2.new(0, 681, 0, 396), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .3, true)
+	            end
+	        end
+	   end)
+	
 	CloseBtn.MouseEnter:Connect(
 		function()
 			CloseBtn.BackgroundColor3 = Color3.fromRGB(240, 71, 71)
