@@ -1,0 +1,142 @@
+--[[//
+//----------------------\\
+  INFORMATION FOR SCRIPT
+//----------------------\\
+
+  MADE BY: ContaminatedCreature
+
+  =================================================
+  To create a UI use the ' CreateUI() ' function (UI Must not be already created)
+  To create text use the ' Createtext() ' function (UI Must be created)
+  To delete the UI use the ' DeleteUI() ' funciton (UI Must be created)
+  
+  When creating text you need to have 3 inputs
+  1: The Text
+  2: If you are keeping the text or deleting it ( true or false )
+  3: If you want to use the ' Glitchy Text ' option ( true or false )
+//----------------------\\
+    END OF INFORMATION
+//----------------------\\
+--\\]]
+
+local PrivacyUI = {}
+
+local StarterGui = game:GetService("StarterGui")
+local RunService = game:GetService("RunService")
+
+PrivacyUIName = ""
+local UI
+local Background
+local Text
+
+AlreadyCreated = false
+
+function PrivacyUI.SoundEffect(id, volume, pitch)
+	if AlreadyCreated ~= false then
+		local sound = Instance.new("Sound")
+		sound.SoundId = "http://www.roblox.com/asset/?id="..id
+		sound.Volume = volume
+		sound.PlaybackSpeed = pitch
+		sound.PlayOnRemove = true
+		sound.Parent = game.Debris
+		sound:Destroy()
+	end
+end
+
+function PrivacyUI.WaitFrame(Time)
+	local Timer = 0
+
+	while Timer < Time do
+		local Delta = RunService.RenderStepped:Wait()
+		Timer += Delta
+	end
+end
+
+function PrivacyUI.Createtext(tects, Keep, glitchy)
+	if AlreadyCreated ~= false then
+		if tects then
+			for i = 1,tects:len() do
+				local t = tects:sub(1,i)
+				if glitchy ~= false then
+					PrivacyUI.SoundEffect(929615155, 1, math.random(8,12)/15)
+				else
+					PrivacyUI.SoundEffect(929615155, 1, 1)
+				end
+
+				Text.Text = t
+
+				if i ~= tects:len() then
+					if (tects:sub(i,i) == "." or tects:sub(i,i) == "?") then
+						PrivacyUI.WaitFrame(1)
+					elseif tects:sub(i,i) == "," then
+						PrivacyUI.WaitFrame(0.4)
+					else
+						PrivacyUI.WaitFrame(0.04)
+					end
+				end
+			end
+
+			if not Keep then
+				PrivacyUI.WaitFrame(2.5)
+				Text.Text = ""
+			end
+		else
+			Text.Text = ""
+		end
+	end
+end
+
+function PrivacyUI.CreateUI()
+	if AlreadyCreated ~= true then
+		UI = Instance.new("ScreenGui")
+		Background = Instance.new("ImageLabel")
+		Text = Instance.new("TextLabel")
+
+		pcall(function()
+			StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All,false)
+		end)
+
+		AlreadyCreated = true
+
+		UI.Name = "PrivacyScreen"
+		PrivacyUIName = UI.Name
+		UI.Parent = game.CoreGui
+		UI.ResetOnSpawn = false
+
+		Background.Name = "Background"
+		Background.Parent = UI
+		Background.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Background.BorderSizePixel = 0
+		Background.Position = UDim2.new(0, 0, 0, -36)
+		Background.Size = UDim2.new(8.99999949e+09, 0, 8.99999949e+09, 0)
+		Background.Image = "http://www.roblox.com/asset/?id=6905635138"
+		Background.ImageTransparency = 0.750
+		Background.ScaleType = Enum.ScaleType.Tile
+		Background.TileSize = UDim2.new(0, 20, 0, 20)
+
+		Text.Name = "Text"
+		Text.Parent = UI
+		Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Text.BackgroundTransparency = 1.000
+		Text.BorderSizePixel = 0
+		Text.Position = UDim2.new(0, 0, 0.5, 0)
+		Text.Size = UDim2.new(1, 0, 0.0563380234, 0)
+		Text.Font = Enum.Font.GothamBold
+		Text.Text = ""
+		Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Text.TextScaled = true
+		Text.TextSize = 14.000
+		Text.TextWrapped = true
+	end
+end
+function PrivacyUI.DeleteUI()
+	if UI and AlreadyCreated ~= false then
+		UI:Destroy()
+		pcall(function()
+			StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All,true)
+		end)
+		AlreadyCreated = false
+		PrivacyUIName = nil
+	end
+end
+return PrivacyUI
