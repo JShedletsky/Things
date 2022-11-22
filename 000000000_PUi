@@ -32,14 +32,14 @@ local Text
 AlreadyCreated = false
 
 function PrivacyUI.SoundEffect(id, volume, pitch)
-	if AlreadyCreated ~= false then
+	if AlreadyCreated then
 		local sound = Instance.new("Sound")
 		sound.SoundId = "http://www.roblox.com/asset/?id="..id
 		sound.Volume = volume
 		sound.PlaybackSpeed = pitch
 		sound.PlayOnRemove = true
 		sound.Parent = game.Debris
-		sound:Destroy()
+		return sound:Destroy()
 	end
 end
 
@@ -53,7 +53,7 @@ function PrivacyUI.WaitFrame(Time)
 end
 
 function PrivacyUI.Createtext(tects, Keep, glitchy)
-	if AlreadyCreated ~= false then
+	if AlreadyCreated then
 		if tects then
 			for i = 1,tects:len() do
 				local t = tects:sub(1,i)
@@ -87,7 +87,7 @@ function PrivacyUI.Createtext(tects, Keep, glitchy)
 end
 
 function PrivacyUI.CreateUI()
-	if AlreadyCreated ~= true then
+	if not AlreadyCreated then
 		UI = Instance.new("ScreenGui")
 		Background = Instance.new("ImageLabel")
 		Text = Instance.new("TextLabel")
@@ -130,7 +130,7 @@ function PrivacyUI.CreateUI()
 	end
 end
 function PrivacyUI.DeleteUI()
-	if UI and AlreadyCreated ~= false then
+	if UI and AlreadyCreated then
 		UI:Destroy()
 		pcall(function()
 			StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All,true)
