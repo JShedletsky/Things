@@ -75,6 +75,7 @@ local Discord = Instance.new("ScreenGui")
 Discord.Name = name
 Discord.Parent = game.CoreGui
 Discord.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+return Discord
 end
 
 function DiscordLib:Window(text)
