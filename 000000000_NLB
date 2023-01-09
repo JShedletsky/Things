@@ -43,10 +43,16 @@ function dragify(Frame)
     end)
 end
 
-for i,v in pairs(game.CoreGui:GetChildren()) do
-    if v.Name == "#1d8(f&04-ETERNAL-(7ac1*^%0^^4*#!35e0(HUB)57^5" then 
-        v:Destroy()
-    end
+--for i,v in pairs(game.CoreGui:GetChildren()) do
+--    if v.Name == "#1d8(f&04-ETERNAL-(7ac1*^%0^^4*#!35e0(HUB)57^5" then 
+--        v:Destroy()
+--    end
+--end
+
+local ActualUi
+
+function library:ReturnUi()
+    return ActualUi
 end
 
 function library:Window(options)
@@ -54,12 +60,15 @@ function library:Window(options)
     local Accent = options.Accent or Color3.fromRGB(255, 255, 255)
     local Logo = options.Logo or '11712240818'
     local Toggle_Key = options.ToggleKey or Enum.KeyCode.LeftBracket
-
+    local UiName = options.UiName or "#1d8(f&04-ETERNAL-(7ac1*^%0^^4*#!35e0(HUB)57^5"
+    
     local EternalUi = Instance.new("ScreenGui")
-    EternalUi.Name = "#1d8(f&04-ETERNAL-(7ac1*^%0^^4*#!35e0(HUB)57^5"
+    EternalUi.Name = UiName
     EternalUi.Parent = game.CoreGui
     EternalUi.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+    ActualUi = EternalUi
+    
     local Mover = Instance.new("Frame")
     Mover.Name = "Mover"
     Mover.Parent = EternalUi
