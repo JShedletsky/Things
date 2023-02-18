@@ -124,7 +124,11 @@ end
 
 function Library:object(class, properties)
 	local localObject = Instance.new(class)
-
+	
+	if Name and Name ~= nil then
+	class.Name = properties.Name
+	end
+	
 	local forcedProps = {
 		BorderSizePixel = 0,
 		AutoButtonColor = false,
@@ -422,6 +426,7 @@ function Library:create(options)
 		Name = "Eternal:Re",
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
+		GuiName = "EternalUi",
 		Link = "https://discord.gg/UEVurn7mbp" -- https://github.com/deeeity/mercury-lib
 	}, options)
 
@@ -444,7 +449,8 @@ function Library:create(options)
 
 	local gui = self:object("ScreenGui", {
 		Parent = (RunService:IsStudio() and LocalPlayer.PlayerGui) or game:GetService("CoreGui"),
-		ZIndexBehavior = Enum.ZIndexBehavior.Global
+		ZIndexBehavior = Enum.ZIndexBehavior.Global,
+		Name = options.GuiName
 	})
 
 	local notificationHolder = gui:object("Frame", {
@@ -3550,3 +3556,5 @@ return setmetatable(Library, {
 		return rawget(Library, i:lower())
 	end
 })
+
+--new
