@@ -789,6 +789,7 @@ local function isPressed(key)
     return (not uis:GetFocusedTextBox()) and uis:IsKeyDown(Enum.KeyCode[key])
 end
 
+if _G.FlingEnabled == true then
 local biggesthandle = nil
 for i, v in pairs(c:GetChildren()) do
     if v:IsA("Accessory") then
@@ -801,6 +802,7 @@ for i, v in pairs(c:GetChildren()) do
             biggesthandle = gp(v, "Handle", "BasePart")
         end
     end
+end
 end
 
 if not biggesthandle then
@@ -830,12 +832,14 @@ end
 
 local mouse = lp:GetMouse()
 local fling = false
+if _G.FlingEnabled == true then
 mouse.Button1Down:Connect(function()
     fling = true
 end)
 mouse.Button1Up:Connect(function()
     fling = false
 end)
+end
 local function doForSignal(signal, vel)
     spawn(function()
         while signal:Wait() and c and handle1 and biggesthandle do
