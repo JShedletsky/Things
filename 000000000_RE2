@@ -803,7 +803,6 @@ for i, v in pairs(c:GetChildren()) do
         end
     end
 end
-end
 
 if not biggesthandle then
     return
@@ -828,6 +827,7 @@ for i, v in pairs(handle1:GetDescendants()) do
     if v:IsA("AlignOrientation") then
         v.Enabled = false
    end
+end
 end
 
 local mouse = lp:GetMouse()
