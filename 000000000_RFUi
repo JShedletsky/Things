@@ -121,7 +121,6 @@ local Rayfield = game:GetObjects("rbxassetid://10804731440")[1]
 if gethui then
 	Rayfield.Parent = gethui()
 elseif syn.protect_gui then 
-	syn.protect_gui(Rayfield)
 	Rayfield.Parent = CoreGui
 elseif CoreGui:FindFirstChild("RobloxGui") then
 	Rayfield.Parent = CoreGui:FindFirstChild("RobloxGui")
@@ -169,6 +168,13 @@ local Debounce = false
 local Notifications = Rayfield.Notifications
 
 local SelectedTheme = RayfieldLibrary.Theme.Default
+
+Rayfield.Main.Topbar.Theme.ImageTransparency = 1
+Rayfield.Main.Topbar.Theme.Image = 0
+Rayfield.Main.Topbar.Hide.ImageTransparency = 1
+Rayfield.Main.Topbar.Hide.Image = 1
+Rayfield.Main.Topbar.Hide.Parent = nil
+Rayfield.Main.Topbar.Theme.Parent = nil
 
 function ChangeTheme(ThemeName)
 	SelectedTheme = RayfieldLibrary.Theme[ThemeName]
