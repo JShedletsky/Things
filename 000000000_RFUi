@@ -170,12 +170,12 @@ local Notifications = Rayfield.Notifications
 
 local SelectedTheme = RayfieldLibrary.Theme.Default
 
-Rayfield.Main.Topbar.Theme.ImageTransparency = 1
-Rayfield.Main.Topbar.Theme.Image = 0
-Rayfield.Main.Topbar.Hide.ImageTransparency = 1
-Rayfield.Main.Topbar.Hide.Image = 1
-Rayfield.Main.Topbar.Hide.Parent = nil
-Rayfield.Main.Topbar.Theme.Parent = nil
+--Rayfield.Main.Topbar.Theme.ImageTransparency = 1
+--Rayfield.Main.Topbar.Theme.Image = 0
+--Rayfield.Main.Topbar.Hide.ImageTransparency = 1
+--Rayfield.Main.Topbar.Hide.Image = 1
+--Rayfield.Main.Topbar.Hide.Parent = nil
+--Rayfield.Main.Topbar.Theme.Parent = nil
 
 function ChangeTheme(ThemeName)
 	SelectedTheme = RayfieldLibrary.Theme[ThemeName]
